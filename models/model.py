@@ -1,7 +1,7 @@
 
-from sqlalchemy import Column, Integer, Text, String, ForeignKey
+from sqlalchemy import Column, Integer, Text, String, ForeignKey, DateTime
 from sqlalchemy.orm import relationship, backref
-
+from datetime import datetime
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -12,6 +12,7 @@ class Diary(Base):
     title = Column(String(10), nullable= False)
     contents = Column(Text(300), default="", nullable=False)
     user = relationship("User", backref=backref("diaries"))
+    created_at = Column(DateTime, nullable=False, default=datetime.now())
 
 class User(Base):
     
@@ -21,6 +22,7 @@ class User(Base):
     name = Column(String(10), nullable=False)
     email = Column(String(30), nullable=True)
     diary_id = Column(Integer, ForeignKey("diary.id"))
+    created_at = Column(DateTime, nullable=False, default=datetime.now())
     
     
     
