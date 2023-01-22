@@ -11,7 +11,7 @@ class Diary(Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(10), nullable= False)
     contents = Column(Text(300), default="", nullable=False)
-    user = relationship("User", backref=backref("diaries"))
+    user = relationship("User", backref=backref("diaries", lazy="subquery"))
     created_at = Column(DateTime, nullable=False, default=datetime.now())
 
 class User(Base):

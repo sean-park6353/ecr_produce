@@ -10,7 +10,7 @@ async def get_diary(
     user_name: str,
     session: AsyncSession = Depends(get_session)
 ):
-    query = await select(User).where(User.name==user_name)
+    query = select(User).where(User.name==user_name)
     coroutine_result = await session.execute(query)
     result = coroutine_result.scalars().all()
-    return "성공"
+    return result
