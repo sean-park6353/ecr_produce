@@ -69,6 +69,9 @@ async def run_migrations_online() -> None:
 
     """
     import os
+    print("*"*30)
+    print(os.getenv("MYSQL_URL"))
+    print("*"*30)
     alembic_config = config.get_section(config.config_ini_section)
     alembic_config["sqlalchemy.url"] = os.getenv("MYSQL_URL")
     connectable = AsyncEngine(
@@ -87,6 +90,8 @@ async def run_migrations_online() -> None:
 
 
 if context.is_offline_mode():
-    run_migrations_offline()
+    pass
+    # run_migrations_offline()
 else:
-    asyncio.run(run_migrations_online())
+    # asyncio.run(run_migrations_online())
+    pass
