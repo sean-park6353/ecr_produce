@@ -174,4 +174,4 @@ poetry.toml
 
 alembic.ini
 
-.mydata
+.mydata/
