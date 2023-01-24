@@ -1,0 +1,2 @@
+1. db 세팅시 db_connection이 안 들어갈 경우엔 환경변수를 그냥 추가해버리자
+    `$ expoert MYSQL_URL=driver://...`
