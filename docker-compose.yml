@@ -1,0 +1,24 @@
+version: "1.1"
+
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    volumes:
+      - ./mydata:/var/lib/mysql
+    environment:
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_USER: admin
+      MYSQL_DATABASE: jiseong_docker_db
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3306:3306"
+
+
+  server:
+    image: hyoshincopy/1.0:latest
+    restart: always
+    volumes:
+      - ./:/var/lib/app
+    ports:
+      - "8000:8000"
