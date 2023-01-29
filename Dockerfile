@@ -6,7 +6,5 @@ COPY . /app/
 COPY ./requirements.txt /app/
 
 RUN pip install -r requirements.txt
-########################## 필수 ##
-RUN export MYSQL_URL=
-#################################
-CMD uvicorn --port 8000 main:app
+ENV MYSQL_URL=$SOME_VALUE
+CMD uvicorn --host 0.0.0.0 --port  8000 main:app
