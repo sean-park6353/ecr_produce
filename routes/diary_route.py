@@ -18,13 +18,16 @@ async def get_diary(
         query = select(User).where(User.name==user_name)
         coroutine_result = await session.execute(query)
         result = coroutine_result.scalars().all()
-        logger.info("!"*30)
-        logger.info(e)
-        logger.info("!"*30)
         return result
 
     except Exception as e:
         logger.info("!"*30)
         logger.info(e)
         logger.info("!"*30)
-        
+
+# @router.get("/create", description="일기 쓰기")
+# async def add_diary(
+#     session: AsyncSession = Depends(get_session)    
+# )
+#     try:
+#         query = insert()
