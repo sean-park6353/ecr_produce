@@ -3,7 +3,7 @@ from routes import diary_route
 app = FastAPI()
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
-
+import os 
 app = FastAPI()
 
 origins = [
@@ -21,6 +21,9 @@ app.add_middleware(
 )
 
 app.include_router(diary_route.router)
+print("*"*30)
+print(os.getenv("MYSQL_URL"))
+print("*"*30)
 
 @app.get("/", description="나무 페이지", tags=["API"])
 def root_page():

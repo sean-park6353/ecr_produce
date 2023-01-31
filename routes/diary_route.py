@@ -15,7 +15,7 @@ async def get_diary(
     session: AsyncSession = Depends(get_session)
 ):
     try:
-        query = select(User).where(User.name==user_name)
+        query = select(Diary).where(User.name==user_name, Diary.user_id==User.id)
         coroutine_result = await session.execute(query)
         result = coroutine_result.scalars().all()
         return result
