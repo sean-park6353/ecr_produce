@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from async_database import get_session, AsyncSession
 from sqlalchemy import select, insert
-from models.model import Diary, User
+from models.model import Book, User
 import logging
 
 logger = logging.getLogger(__name__)
@@ -15,9 +15,13 @@ async def get_diary(
     session: AsyncSession = Depends(get_session)
 ):
     try:
-        query = select(Diary).where(User.name==user_name, Diary.user_id==User.id)
+        query = (
+            select(Book, User)
+            .join(User)
+            .where(User.name==user_name, User.id==Book.contributer_id)
+        )
         coroutine_result = await session.execute(query)
-        result = coroutine_result.scalars().all()
+        result = coroutine_result.fetchall()
         return result
 
     except Exception as e:
