@@ -12,8 +12,7 @@ class Book(Base):
     title = Column(String(10), nullable= False)
     contents = Column(Text(300), default="", nullable=False)
     created_at = Column(DateTime, nullable=False, default=datetime.now())
-    contributer_id = Column(Integer, ForeignKey("user.id"))
-    
+
 class User(Base):
     
     __tablename__ = "user"
@@ -22,9 +21,13 @@ class User(Base):
     name = Column(String(10), nullable=False)
     email = Column(String(30), nullable=True)
     created_at = Column(DateTime, nullable=False, default=datetime.now())
-    book = relationship("Book")
 
+class BookToUser(Base):
+    
+    __tablename__ = "book_user"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("user.id"))
+    book_id = Column(Integer, ForeignKey("book.id"))
+    
 
-    
-    
-    

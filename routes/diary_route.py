@@ -25,13 +25,8 @@ async def get_diary(
         return result
 
     except Exception as e:
-        logger.info("!"*30)
+        print(1)
+        print(e)
+        print(1)
         logger.info(e)
-        logger.info("!"*30)
 
-# @router.get("/create", description="일기 쓰기")
-# async def add_diary(
-#     session: AsyncSession = Depends(get_session)    
-# )
-#     try:
-#         query = insert()
